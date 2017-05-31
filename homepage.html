@@ -83,7 +83,29 @@ On click the images will be displayed at normal size to complete the effect
 }
 /*Clicking on any thumbnail now should activate the image related to it*/
 
-/*We are done :)*/
+/*modal :)*/
+.modal .modal-header {
+  border-bottom: none;
+  position: relative;
+}
+.modal .modal-header .btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.modal .modal-footer {
+  border-top: none;
+  padding: 0;
+}
+.modal .modal-footer .btn-group > .btn:first-child {
+  border-bottom-left-radius: 0;
+}
+.modal .modal-footer .btn-group > .btn:last-child {
+  border-top-right-radius: 0;
+}
     </style>
     <body class="landing-page landing-page1">
         <nav class="navbar navbar-transparent navbar-top" role="navigation">
@@ -139,7 +161,26 @@ On click the images will be displayed at normal size to complete the effect
         <div class="wrapper">
             <div class="parallax filter-gradient blue" data-color="blue">
                 <div class="parallax-background">
-                    <img class="parallax-background-image" src="paysage.jpg">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                       <li data-target="#myCarousel" data-slide-to="1" ></li>
+                       <li data-target="#myCarousel" data-slide-to="2" ></li>
+                        
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img class="parallax-background-image" src="paysage2.jpg">
+                        </div>
+                        <div class="item">
+                            <img class="parallax-background-image" src="paysage1.jpg">
+                        </div>
+                        <div class="item">
+                            <img class="parallax-background-image" src="paysage.jpg">
+                        </div>
+                    </div>
+                </div>
+                    <!--<img class="parallax-background-image" src="paysage.jpg">!-->
                 </div>
                 <div class= "container">
                     <div class="row">
@@ -169,7 +210,48 @@ On click the images will be displayed at normal size to complete the effect
                                 <div class="text">
                                     <h4>Professionnal Trainings</h4>
                                     <p>All appointments sync with your Google calendar so your availability is always up to date. See your schedule at a glance from any device.</p>
+                                        <div id="myModal" class="modal fade in">
+        <div class="modal-dialog">
+            <div class="modal-content">
+ 
+                <div class="modal-header">
+                    <a class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a></div>
+                    <div class="col-md-3" style="border-right:1px solid #E0E0E0;">
+
+                <div class="modal-body">
+                    <h5 style="color:gold"><b>Mentors</b></h5>
+                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-3" style="border-right:1px solid #E0E0E0;">
+
+                <div class="modal-body">
+                    <h5 style="color:gold"><b>Course Plan</b></h5>
+                    <p> Duis mollis, est non<br> commodo luctus, nisi<br> erat porttitor ligula.</p>
+                </div>
+                </div>
+                <div class="col-md-3" >
+
+                <div class="modal-body">
+                    <h5 style="color:gold"><b>Time</b></h5>
+                    <p>Monday 9:00a.m</p>
+                    <p>Mercredi 9:00a.m</p>
+                    <p>Vendredi 3:00p.m</p>
+                </div>
+                </div>
+
+               </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dalog -->
+    </div><!-- /.modal -->
+    
+<a data-toggle="modal" href="#myModal" class="btn btn-primary">Learn more..</a>
+
+
+
                                 </div>
+
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -179,6 +261,43 @@ On click the images will be displayed at normal size to complete the effect
                                 </div>
                                 <h4>Mentorship</h4>
                                 <p>Automatic text and email reminders make sure customers always remember their upcoming appointments.</p>
+       <div id="myModal" class="modal fade in">
+        <div class="modal-dialog">
+            <div class="modal-content">
+ 
+                <div class="modal-header">
+                    <a class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a></div>
+                    <div class="col-md-3" style="border-right:1px solid #E0E0E0;">
+
+                <div class="modal-body">
+                    <h5 style="color:gold"><b>Mentors</b></h5>
+                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-3" style="border-right:1px solid #E0E0E0;">
+
+                <div class="modal-body">
+                    <h5 style="color:gold"><b>Course Plan</b></h5>
+                    <p> Duis mollis, est non<br> commodo luctus, nisi<br> erat porttitor ligula.</p>
+                </div>
+                </div>
+                <div class="col-md-3" >
+
+                <div class="modal-body">
+                    <h5 style="color:gold"><b>Time</b></h5>
+                    <p>Monday 9:00a.m</p>
+                    <p>Mercredi 9:00a.m</p>
+                    <p>Vendredi 3:00p.m</p>
+                </div>
+                </div>
+
+               </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dalog -->
+    </div><!-- /.modal -->
+    
+<a data-toggle="modal" href="#myModal" class="btn btn-primary">Learn more..</a>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -188,6 +307,43 @@ On click the images will be displayed at normal size to complete the effect
                                 </div>
                                 <h4>Software Developing</h4>
                                 <p>Take payments and run your business on the go, in your store and then see how it all adds up with analytics.</p>
+                                <div id="myModal" class="modal fade in">
+        <div class="modal-dialog">
+            <div class="modal-content">
+ 
+                <div class="modal-header">
+                    <a class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a></div>
+                    <div class="col-md-3" style="border-right:1px solid #E0E0E0;">
+
+                <div class="modal-body">
+                    <h5 style="color:gold"><b>Mentors</b></h5>
+                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-3" style="border-right:1px solid #E0E0E0;">
+
+                <div class="modal-body">
+                    <h5 style="color:gold"><b>Course Plan</b></h5>
+                    <p> Duis mollis, est non<br> commodo luctus, nisi<br> erat porttitor ligula.</p>
+                </div>
+                </div>
+                <div class="col-md-3" >
+
+                <div class="modal-body">
+                    <h5 style="color:gold"><b>Time</b></h5>
+                    <p>Monday 9:00a.m</p>
+                    <p>Mercredi 9:00a.m</p>
+                    <p>Vendredi 3:00p.m</p>
+                </div>
+                </div>
+
+               </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dalog -->
+    </div><!-- /.modal -->
+    
+<a data-toggle="modal" href="#myModal" class="btn btn-primary">Learn more..</a>
                             </div>
                         </div>
                         
@@ -195,7 +351,7 @@ On click the images will be displayed at normal size to complete the effect
                 </div>
             </div>
 
-
+            
 
             
              <div class="section section-testimonial" id="section2" style="background-color: #fff" id="section2">
