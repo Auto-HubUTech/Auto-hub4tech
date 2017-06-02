@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <link rel="icon" type="image/png" href="assets/img/favicon.ico">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <title>Auto-hub4Tech</title>
+        <title>Auto-HubUTech</title>
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
 
@@ -19,93 +19,93 @@
     </head>
     <style >
         /*Time for the CSS*/
-* {margin: 0; padding: 0;}
-body {background: #ccc;}
+        * {margin: 0; padding: 0;}
+        body {background: #ccc;}
 
-.slider{
-    width: 640px; /*Same as width of the large image*/
-    position: relative;
-    /*Instead of height we will use padding*/
-    padding-top: 320px; /*That helps bring the labels down*/
-    
-    margin: 100px auto;
-    
-    /*Lets add a shadow*/
-    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.75);
-}
+        .slider{
+            width: 640px; /*Same as width of the large image*/
+            position: relative;
+            /*Instead of height we will use padding*/
+            padding-top: 320px; /*That helps bring the labels down*/
+            
+            margin: 100px auto;
+            
+            /*Lets add a shadow*/
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.75);
+        }
 
 
-/*Last thing remaining is to add transitions*/
-.slider>img{
-    position: absolute;
-    left: 0; top: 0;
-    transition: all 0.5s;
-}
+        /*Last thing remaining is to add transitions*/
+        .slider>img{
+            position: absolute;
+            left: 0; top: 0;
+            transition: all 0.5s;
+        }
 
-.slider input[name='slide_switch'] {
-    display: none;
-}
+        .slider input[name='slide_switch'] {
+            display: none;
+        }
 
-.slider label {
-    /*Lets add some spacing for the thumbnails*/
-    margin: 18px 0 0 18px;
-    border: 3px solid #999;
-    
-    float: left;
-    cursor: pointer;
-    transition: all 0.5s;
-    
-    /*Default style = low opacity*/
-    opacity: 0.6;
-}
+        .slider label {
+            /*Lets add some spacing for the thumbnails*/
+            margin: 18px 0 0 18px;
+            border: 3px solid #999;
+            
+            float: left;
+            cursor: pointer;
+            transition: all 0.5s;
+            
+            /*Default style = low opacity*/
+            opacity: 0.6;
+        }
 
-.slider label img{
-    display: block;
-}
+        .slider label img{
+            display: block;
+        }
 
-/*Time to add the click effects*/
-.slider input[name='slide_switch']:checked+label {
-    border-color: #666;
-    opacity: 1;
-}
-/*Clicking any thumbnail now should change its opacity(style)*/
-/*Time to work on the main images*/
-.slider input[name='slide_switch'] ~ img {
-    opacity: 0;
-    transform: scale(1.1);
-}
-/*That hides all main images at a 110% size
-On click the images will be displayed at normal size to complete the effect
-*/
-.slider input[name='slide_switch']:checked+label+img {
-    opacity: 1;
-    transform: scale(1);
-}
-/*Clicking on any thumbnail now should activate the image related to it*/
+        /*Time to add the click effects*/
+        .slider input[name='slide_switch']:checked+label {
+            border-color: #666;
+            opacity: 1;
+        }
+        /*Clicking any thumbnail now should change its opacity(style)*/
+        /*Time to work on the main images*/
+        .slider input[name='slide_switch'] ~ img {
+            opacity: 0;
+            transform: scale(1.1);
+        }
+        /*That hides all main images at a 110% size
+        On click the images will be displayed at normal size to complete the effect
+        */
+        .slider input[name='slide_switch']:checked+label+img {
+            opacity: 1;
+            transform: scale(1);
+        }
+        /*Clicking on any thumbnail now should activate the image related to it*/
 
-/*modal :)*/
-.modal .modal-header {
-  border-bottom: none;
-  position: relative;
-}
-.modal .modal-header .btn {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin-top: 0;
-  border-top-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-.modal .modal-footer {
-  border-top: none;
-  padding: 0;
-}
-.modal .modal-footer .btn-group > .btn:first-child {
-  border-bottom-left-radius: 0;
-}
-.modal .modal-footer .btn-group > .btn:last-child {
-  border-top-right-radius: 0;
-}
+        /*modal :)*/
+        .modal .modal-header {
+          border-bottom: none;
+          position: relative;
+        }
+        .modal .modal-header .btn {
+          position: absolute;
+          top: 0;
+          right: 0;
+          margin-top: 0;
+          border-top-left-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+        .modal .modal-footer {
+          border-top: none;
+          padding: 0;
+        }
+        .modal .modal-footer .btn-group > .btn:first-child {
+          border-bottom-left-radius: 0;
+        }
+        .modal .modal-footer .btn-group > .btn:last-child {
+          border-top-right-radius: 0;
+        }
     </style>
     <body class="landing-page landing-page1">
         <nav class="navbar navbar-transparent navbar-top" role="navigation">
@@ -144,7 +144,7 @@ On click the images will be displayed at normal size to complete the effect
                         <li>
                             <a href="#section2">
                             <i class="fa fa-user"></i>
-                            polfait
+                            Portfolio
                             </a>
                         </li>
                         <li>
@@ -187,10 +187,10 @@ On click the images will be displayed at normal size to complete the effect
                         
                         <div class="col-md-6 col-md-offset-1">
                             <div class="description">
-                                <h2 style="font-size: 90px;line-height: 80px;margin-bottom: 7px"><b>Auto-Hub4Tech.</b></h2>
-                                <h4><b>Is here for you</b></h4>
+                                <h2 style="font-size: 90px;line-height: 80px;margin-bottom: 7px"><b>Auto-HubUTech.</b></h2>
+                                <h4><b>Automation Hub Using Technology</b></h4>
                                 <br>
-                                <h5>To deliver The Training And Developement Solution You Need,Where You Need Them.</h5>
+                                <h5>To deliver Mentorship and Development of Solutions You Need, Where You Need.</h5>
                             </div>
                             
                         </div>
@@ -200,7 +200,7 @@ On click the images will be displayed at normal size to complete the effect
 
             <div class="section section-features" style="padding:30px 0" id="section1">
                    
-                    <h4 class="header-text text-center">What Auto_HUB4tech does it do?</h4>
+                    <h4 class="header-text text-center">What does Auto-HUBUtech do?</h4>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="card card-blue">
@@ -208,7 +208,7 @@ On click the images will be displayed at normal size to complete the effect
                                     <i class="fa fa-users" style="color: gold;font-size:90px;"></i>
                                 </div>
                                 <div class="text">
-                                    <h4>Professionnal Trainings</h4>
+                                    <h4>Professional Trainings</h4>
                                     <p>All appointments sync with your Google calendar so your availability is always up to date. See your schedule at a glance from any device.</p>
                                         <div id="myModal" class="modal fade in">
         <div class="modal-dialog">
@@ -305,7 +305,7 @@ On click the images will be displayed at normal size to complete the effect
                                 <div class="icon">
                                     <i class="fa fa-desktop" style="color: gold;font-size: 90px;"></i>
                                 </div>
-                                <h4>Software Developing</h4>
+                                <h4>Software Development</h4>
                                 <p>Take payments and run your business on the go, in your store and then see how it all adds up with analytics.</p>
                                 <div id="myModal" class="modal fade in">
         <div class="modal-dialog">
@@ -405,16 +405,16 @@ You can download it from https://leaverou.github.com/prefixfree/ -->
             <div class="section section-no-padding" id="section3">
                 <div class="parallax filter-gradient blue" data-color="blue">
                     <div class="info">
-                        <h1>Auto_HUB4tech</h1>
-                        <p>Beautiful Campany in the world</p>
+                        <h1>Auto-HubUTech</h1>
+                        <p>Best Company in the World</p>
                        <div class="row">
                            <div class="col-md-6">
                               
-                               <i class="fa fa-envelope" aria-hidden="true" style="color:black; font-size:40px;"></i><span style="color:gold;"> cmuhimakazi@gmail.com</span>
+                               <i class="fa fa-envelope" aria-hidden="true" style="color:black; font-size:40px;"></i><span style="color:gold;"> auto-hubutech@gmail.com</span>
                            </div>
                            <div class="col-md-6">
                            
-                               <i class="fa fa-facebook-square" style="color:black; font-size:40px;"></i><span style="color:gold;"><br>autohub4tech.com</span>
+                               <i class="fa fa-facebook-square" style="color:black; font-size:40px;"></i><span style="color:gold;"><br>www.auto-hubutech.com</span>
                            </div>
                             
                        </div>
@@ -422,11 +422,11 @@ You can download it from https://leaverou.github.com/prefixfree/ -->
                        <div class="row">
                            <div class="col-md-6">
                               
-                               <i class="fa fa-mobile" aria-hidden="true" style="color:black; font-size:40px;"></i><span style="color:gold;"><br> +250780456789</span>
+                               <i class="fa fa-mobile" aria-hidden="true" style="color:black; font-size:40px;"></i><span style="color:gold;"><br> +225 75 11 06 95</span>
                            </div>
                            <div class="col-md-6">
                            
-                               <i class="fa fa-phone" style="color:black; font-size:40px;"></i><span style="color:gold;"><br>+250780435695</span>
+                               <i class="fa fa-phone" style="color:black; font-size:40px;"></i><span style="color:gold;"><br>+225 57 55 66 95</span>
                            </div>
                             
                        </div>
@@ -447,7 +447,7 @@ You can download it from https://leaverou.github.com/prefixfree/ -->
                         </a>
                     </div>
                     <div class="copyright">
-                        &copy; 2017 Made with Auto-Hub4Tech
+                        Auto-HubUTech  &copy; 2017
                     </div>
                 </div>
             </footer>
