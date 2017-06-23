@@ -15,7 +15,6 @@
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300' rel='stylesheet' type='text/css'>
         <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
-
     </head>
     <style >
         /*Time for the CSS*/
@@ -108,145 +107,144 @@
           border-top-right-radius: 0;
         }
 
-#custom_carousel .item  .top {
-    overflow:hidden;
-    max-height:300px;
-    margin-bottom:15px;
-}
-#custom_carousel .item {
+        #custom_carousel .item  .top {
+            overflow:hidden;
+            max-height:300px;
+            margin-bottom:15px;
+        }
+        #custom_carousel .item {
 
-    color:#000;
-    background-color:#fff;
-    padding:20px 0;
-    overflow:hidden
-}
-#custom_carousel .item img{
-width:100%;
-height:auto
-}
+            color:#000;
+            background-color:#fff;
+            padding:20px 0;
+            overflow:hidden
+        }
+        #custom_carousel .item img{
+        width:100%;
+        height:auto
+        }
 
-#custom_carousel .izq 
-{
-    position:absolute;
-  left: -25px;
-  top:40%;
-  background-image: none;
-  background: none repeat scroll 0 0 #222222;
-  border: 4px solid #FFFFFF;
-  border-radius: 23px;
-  height: 40px;
-  width : 40px;
-  margin-top: 30px;
-}
-/* Next button  */
-#custom_carousel .der 
-{
-       position:absolute;
-  right: -25px !important;
-  top:40%;
-  left:inherit;
-  background-image: none;
-  background: none repeat scroll 0 0 #222222;
-  border: 4px solid #FFFFFF;
-  border-radius: 23px;
-  height: 40px;
-  width : 40px;
-  margin-top: 30px;
-}
-#custom_carousel .controls{
+        #custom_carousel .izq 
+        {
+            position:absolute;
+          left: -25px;
+          top:40%;
+          background-image: none;
+          background: none repeat scroll 0 0 #222222;
+          border: 4px solid #FFFFFF;
+          border-radius: 23px;
+          height: 40px;
+          width : 40px;
+          margin-top: 30px;
+        }
+        /* Next button  */
+        #custom_carousel .der 
+        {
+               position:absolute;
+          right: -25px !important;
+          top:40%;
+          left:inherit;
+          background-image: none;
+          background: none repeat scroll 0 0 #222222;
+          border: 4px solid #FFFFFF;
+          border-radius: 23px;
+          height: 40px;
+          width : 40px;
+          margin-top: 30px;
+        }
+        #custom_carousel .controls{
 
-    overflow:hidden;
-    padding:0;
-    margin:0;
-    white-space: nowrap;
-    text-align: center;
-    position: relative;
-    background:#fff;
-    border:0;
-}
-#custom_carousel .controls .nav{
+            overflow:hidden;
+            padding:0;
+            margin:0;
+            white-space: nowrap;
+            text-align: center;
+            position: relative;
+            background:#fff;
+            border:0;
+        }
+        #custom_carousel .controls .nav{
 
-    padding:0;
-    margin:0;
-    white-space: nowrap;
-    text-align: center;
-    position: relative;
-    background:#fff;
-    width: auto;
-    border: 0;
-}
-#custom_carousel .controls li {
-    transition: all .5s ease;
-    display: inline-block;
-    max-width: 100px;
-    height: 90px;
-    opacity:.5;
-}
-#custom_carousel .controls li a{
-    padding:0;
-}
-#custom_carousel .controls li img{
-width:100%;
-height:auto
-}
+            padding:0;
+            margin:0;
+            white-space: nowrap;
+            text-align: center;
+            position: relative;
+            background:#fff;
+            width: auto;
+            border: 0;
+        }
+        #custom_carousel .controls li {
+            transition: all .5s ease;
+            display: inline-block;
+            max-width: 100px;
+            height: 90px;
+            opacity:.5;
+        }
+        #custom_carousel .controls li a{
+            padding:0;
+        }
+        #custom_carousel .controls li img{
+        width:100%;
+        height:auto
+        }
 
-#custom_carousel .controls li.active {
-    background-color:#fff;
-    opacity:1;
-}
-#custom_carousel .controls a small {
-    overflow:hidden;
-    display:block;
-    font-size:10px;
-    margin-top:5px;
-    font-weight:bold
-}
-#myBtn {
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 30px;
-  z-index: 99;
-  border: none;
-  outline: none;
-  background-color: red;
-  color: white;
-  cursor: pointer;
-  padding: 15px;
-  border-radius: 10px;
-}
+        #custom_carousel .controls li.active {
+            background-color:#fff;
+            opacity:1;
+        }
+        #custom_carousel .controls a small {
+            overflow:hidden;
+            display:block;
+            font-size:10px;
+            margin-top:5px;
+            font-weight:bold
+        }
+        #myBtn {
+          display: none;
+          position: fixed;
+          bottom: 20px;
+          right: 30px;
+          z-index: 99;
+          border: none;
+          outline: none;
+          background-color: red;
+          color: white;
+          cursor: pointer;
+          padding: 15px;
+          border-radius: 10px;
+        }
 
-#myBtn:hover {
-  background-color: #555;
-}
+        #myBtn:hover {
+          background-color: #555;
+        }
     </style>
     <script >
         $(document).ready(function(ev){
-    var items = $(".nav li").length;
-    var leftRight=0;
-    if(items>5){
-        leftRight=(items-5)*50*-1;
-    }
-    $('#custom_carousel').on('slide.bs.carousel', function (evt) {
-        
- 
-      $('#custom_carousel .controls li.active').removeClass('active');
-      $('#custom_carousel .controls li:eq('+$(evt.relatedTarget).index()+')').addClass('active');
-    })
-    $('.nav').draggable({ 
-        axis: "x",
-         stop: function() {
-            var ml = parseInt($(this).css('left'));
-            if(ml>0)
-            $(this).animate({left:"0px"});
-                if(ml<leftRight)
-                    $(this).animate({left:leftRight+"px"});
-                    
-        }
-      
-    });
-});
-
+            var items = $(".nav li").length;
+            var leftRight=0;
+            if(items>5){
+                leftRight=(items-5)*50*-1;
+            }
+            $('#custom_carousel').on('slide.bs.carousel', function (evt) {
+                
+         
+              $('#custom_carousel .controls li.active').removeClass('active');
+              $('#custom_carousel .controls li:eq('+$(evt.relatedTarget).index()+')').addClass('active');
+            })
+            $('.nav').draggable({ 
+                axis: "x",
+                 stop: function() {
+                    var ml = parseInt($(this).css('left'));
+                    if(ml>0)
+                    $(this).animate({left:"0px"});
+                        if(ml<leftRight)
+                            $(this).animate({left:leftRight+"px"});
+                            
+                }
+              
+            });
+        });
     </script>
     <body class="landing-page landing-page1">
         <nav class="navbar navbar-transparent navbar-top" role="navigation" id="section1">
@@ -262,7 +260,7 @@ height:auto
                     <a href="#">
                         <div class="logo-container">
                             <div class="logos">
-                                <img src="logo1.png" alt="Creative Tim Logo" style="width:10%;height:40%;margin-right:55%;position:absolute;">
+                                <img src="auto-hubUtech-logo-v2.png" alt="Creative Tim Logo" style="width:20%;height:100%;margin-right:35%;position:absolute;">
                             </div>
                             
                         </div>
@@ -328,7 +326,7 @@ height:auto
                         
                         <div class="col-md-6 col-md-offset-1">
                             <div class="description">
-                                <h2 style="font-size: 90px;line-height: 80px;margin-bottom: 7px"><b>Auto-HubUTech.</b></h2>
+                                <h2 style="font-size: 90px;line-height: 80px;margin-bottom: 7px"><b style="color: #42a6e6;">Auto</b><b>-</b><b style="color: #4fb032;">Hub</b><b style="color: #f0e61e;">U</b><b style="color: #4fb032;">Tech</b></h2>
                                 <h4><b>Automation Hub Using Technology</b></h4>
                                 <br>
                                 <h5>To deliver Mentorship and Development of Solutions You Need, Where You Need.</h5>
@@ -633,6 +631,7 @@ You can download it from https://leaverou.github.com/prefixfree/ -->
             <div class="section section-no-padding" id="section4">
                 <div class="parallax filter-gradient blue" data-color="blue">
                     <div class="info">
+                        <img src="auto-hubUtech-logo-v2.png" alt="Auto-HubUTech" style="width:70%;height:40%;position:absolute;">
                         <h1>Auto-HubUTech</h1>
                         <p>Best Company For Your Business World</p>
                        <div class="row">
