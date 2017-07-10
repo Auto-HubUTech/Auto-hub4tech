@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <title>Auto-HubUTech</title>
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <meta name="viewport" content="width=device-width" />
+
+        <link href="assets/css/bootstrap.css" rel="stylesheet" />
+        <link href="assets/css/landing-page.css" rel="stylesheet"/>
+
+        <!--     Fonts and icons     -->
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300' rel='stylesheet' type='text/css'>
+        <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    </head>
+    <style >
+        /*Time for the CSS*/
+        * {margin: 0; padding: 0;}
+        body {background: #ccc;}
+        .slider{
+            width: 600px; /*Same as width of the large image*/
+            position: relative;
+            /*Instead of height we will use padding*/
+            padding-top: 400px; /*That helps bring the labels down*/
+            
+            margin: 100px auto;
+            
+            /*Lets add a shadow*/
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.75);
+        }
+        /*Last thing remaining is to add transitions*/
+        .slider>img{
+            position: absolute;
+            left: 0; top: 0;
+            transition: all 0.9s;
+            width:600px;
+        }
+        .slider input[name='slide_switch'] {
+            display: none;
+        }
+        .slider label {
+            /*Lets add some spacing for the thumbnails*/
+            margin: 18px 0 0 18px;
+            border: 3px solid #999;
+            
+            float: left;
+            cursor: pointer;
+            transition: all 0.5s;
+            
+            /*Default style = low opacity*/
+            opacity: 0.6;
+        }
+        .slider label img{
+            display: block;
+        }
+        /*Time to add the click effects*/
+        .slider input[name='slide_switch']:checked+label {
+            border-color: #666;
+            opacity: 1;
+        }
+        /*Clicking any thumbnail now should change its opacity(style)*/
+        /*Time to work on the main images*/
+        .slider input[name='slide_switch'] ~ img {
+            opacity: 0;
+            transform: scale(1.1);
+        }
+        /*That hides all main images at a 110% size
+        On click the images will be displayed at normal size to complete the effect
+        */
+        .slider input[name='slide_switch']:checked+label+img {
+            opacity: 1;
+            transform: scale(1);
+        }
+        /*Clicking on any thumbnail now should activate the image related to it*/
+        /*modal :)*/
+        .modal .modal-header {
+          border-bottom: none;
+          position: relative;
+        }
+        .modal .modal-header .btn {
+          position: absolute;
+          top: 0;
+          right: 0;
+          margin-top: 0;
+          border-top-left-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+        .modal .modal-footer {
+          border-top: none;
+          padding: 0;
+        }
+        .modal .modal-footer .btn-group > .btn:first-child {
+          border-bottom-left-radius: 0;
+        }
+        .modal .modal-footer .btn-group > .btn:last-child {
+          border-top-right-radius: 0;
+        }
+        #custom_carousel .item  .top {
+            overflow:hidden;
+            max-height:300px;
+            margin-bottom:15px;
+        }
+        #custom_carousel .item {
+            color:#000;
+            background-color:#fff;
+            padding:20px 0;
+            overflow:hidden
+        }
+        #custom_carousel .item img{
+        width:100%;
+        height:auto
+        }
+        #custom_carousel .izq 
+        {
+            position:absolute;
+          left: -25px;
+          top:40%;
+          background-image: none;
+          background: none repeat scroll 0 0 #222222;
+          border: 4px solid #FFFFFF;
+          border-radius: 23px;
+          height: 40px;
+          width : 40px;
+          margin-top: 30px;
+        }
+        /* Next button  */
+        #custom_carousel .der 
+        {
+               position:absolute;
+          right: -25px !important;
+          top:40%;
+          left:inherit;
+          background-image: none;
+          background: none repeat scroll 0 0 #222222;
+          border: 4px solid #FFFFFF;
+          border-radius: 23px;
+          height: 40px;
+          width : 40px;
+          margin-top: 30px;
+        }
+        #custom_carousel .controls{
+            overflow:hidden;
+            padding:0;
+            margin:0;
+            white-space: nowrap;
+            text-align: center;
+            position: relative;
+            background:#fff;
+            border:0;
+        }
+        #custom_carousel .controls .nav{
+            padding:0;
+            margin:0;
+            white-space: nowrap;
+            text-align: center;
+            position: relative;
+            background:#fff;
+            width: auto;
+            border: 0;
+        }
+        #custom_carousel .controls li {
+            transition: all .5s ease;
+            display: inline-block;
+            max-width: 100px;
+            height: 90px;
+            opacity:.5;
+        }
+        #custom_carousel .controls li a{
+            padding:0;
+        }
+        #custom_carousel .controls li img{
+        width:100%;
+        height:auto
+        }
+        #custom_carousel .controls li.active {
+            background-color:#fff;
+            opacity:1;
+        }
+        #custom_carousel .controls a small {
+            overflow:hidden;
+            display:block;
+            font-size:10px;
+            margin-top:5px;
+            font-weight:bold
+        }
+        #myBtn {
+          display: none;
+          position: fixed;
+          bottom: 20px;
+          right: 30px;
+          z-index: 99;
+          border: none;
+          outline: none;
+          background-color: red;
+          color: white;
+          cursor: pointer;
+          padding: 15px;
+          border-radius: 10px;
+        }
+        #myBtn:hover {
+          background-color: #555;
+        }
+    </style>
+    <script >
+        $(document).ready(function(ev){
+            var items = $(".nav li").length;
+            var leftRight=0;
+            if(items>5){
+                leftRight=(items-5)*50*-1;
+            }
+            $('#custom_carousel').on('slide.bs.carousel', function (evt) {
+                
+         
+              $('#custom_carousel .controls li.active').removeClass('active');
+              $('#custom_carousel .controls li:eq('+$(evt.relatedTarget).index()+')').addClass('active');
+            })
+            $('.nav').draggable({ 
+                axis: "x",
+                 stop: function() {
+                    var ml = parseInt($(this).css('left'));
+                    if(ml>0)
+                    $(this).animate({left:"0px"});
+                        if(ml<leftRight)
+                            $(this).animate({left:leftRight+"px"});
+                            
+                }
+              
+            });
+        });
+    </script>
+    <body class="landing-page landing-page1">
+        <nav class="navbar navbar-transparent navbar-top" role="navigation" id="section1">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button id="menu-toggle" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar bar1"></span>
+                    <span class="icon-bar bar2"></span>
+                    <span class="icon-bar bar3"></span>
+                    </button>
+                    <!-- for the moment we removed the logo to make the page even simpler -->
+                    <a href="#">
+                            <div class="logo-container">
+                            <div class="row">
+                            <div class="col-md-3">
+                                <div class="logos">
+                                    <img src="images/logos/auto-hubUtech-logo-small.png" alt="Auto-HubUTech Logo" style="position: absolute;">
+                                </div>
+                            </div>
+                            </div>
+                            
+                        </div>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="example">
+                <div class="row">
+                <div class="col-md-3-md-9">
+                    <ul class="nav navbar-nav navbar-right" style="margin-left: 45%;">
+                        <li>
+                            <a href="#section1">
+                            <i class="fa fa-home"></i>
+                            Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#section2">
+                            <i class="fa fa-info"></i>
+                            About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#section3">
+                            <i class="fa fa-user"></i>
+                            Portfolio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#section4">
+                            <i class="fa fa-phone-square"></i>
+                            Contact Us
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            </div>
+            </div>
+        </nav>
+        <div class="wrapper">
+            <div class="parallax filter-gradient blue" data-color="blue">
+                <div class="parallax-background">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                           <li data-target="#myCarousel" data-slide-to="1" ></li>
+                           <li data-target="#myCarousel" data-slide-to="2" ></li>
+                            
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="item">
+                                <img class="parallax-background-image" src="images/higher-tower.jpg">
+                            </div>
+                            <div class="item active">
+                                <img class="parallax-background-image" src="images/empty-office.jpg">
+                            </div>
+                            <div class="item">
+                                <img class="parallax-background-image" src="images/blueprint-keyboard.jpg">
+                            </div>
+                        </div>
+                    </div>
+                        <!--<img class="parallax-background-image" src="paysage.jpg">!-->
+                </div>
+                <div class= "container">
+                    <div class="row">
+                        
+                        <div class="col-md-6 col-md-offset-1">
+                            <div class="description">
+                                <h2 style="font-size: 80px;line-height: 80px;margin-bottom: 7px"><b style="color: #42a6e6;">Auto</b><b style="color: #4fb032;">Hub</b><b style="color: #f0e61e;">U</b><b style="color: #4fb032;">Tech</b></h2>
+                                <h4><b>Automation Hub Using Technology</b></h4>
+                                <br>
+                                <h5 style="font-family: Georgia;"><b style="color: #f0e61e;">Software</b> <i class="fa fa-laptop"></i> and <b style="color: #f0e61e;">Mobile</b> <i class="fa fa-mobile"></i> apps development, <b style="color: #f0e61e;">Robotics</b> <i class="fa fa-android"></i> mentorship, <b style="color: #f0e61e;">Startups</b> financing <i class="fa fa-money"></i>...  are part of many services we offer.</h5>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2 (About Us) -->
+
+        <div class="section section-testimonial" id="section2" style="background-color: #f2f2f2" id="section2">
+            <div class="container" >
+                <h3 style="color: #4fb032;" class="header-text text-center"><b>What does Auto-HubUTech do?</b></h3>
+                <!--
+                We will make a slider with stylized thumbnails using CSS3
+                The markup is very simple:
+                Radio Inputs
+                Labels with thumbnails to detect click event
+                Main Image
+                -->
+                <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+                <div class="container-fluid">
+                    <div id="custom_carousel" class="carousel slide" data-ride="carousel" data-interval="4000">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="top col-md-6 col-xs-12"><img src="images/code-lines.jpg" class="img-responsive"></div>
+                                        <div class="content col-md-6 col-xs-12">
+                                            <h2>Software Development</h2>
+                                            <p><i class="fa fa-check-circle"></i> Mobile development using Android</p>
+                                            <p><i class="fa fa-check-circle"></i> Web development using latest and powerful technology</p>
+                                            <p><i class="fa fa-check-circle"></i> Robust and complex Information Management Systems development</p>
+                                            <p><i class="fa fa-check-circle"></i> <a href="http://openmrs.org/">OpenMRS</a> implementors that will provide your healthcare facility with a tailored, affordable and easy-to-learn solution</p>
+                                        </div>
+                                    </div>
+                                </div>            
+                            </div> 
+                            <div class="item">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="top col-md-6 col-xs-12"><img src="images/lending.jpg" class="img-responsive"></div>
+                                        <div class="content col-md-6 col-xs-12">
+                                            <h2>Start-ups Financing</h2>
+                                            <p><i class="fa fa-check-circle"></i> Help Youth to start and realize their dreams. This may be a project that will be first discussed with our company administration, in order to set some rules and guidances. Privileged projects are Information Technology related</p>
+                                            <p><i class="fa fa-check-circle"></i> Our company may also help in other interesting fields of business, such as: music (production), taxis and cars renting projects...</p>
+                                        </div>
+                                    </div>
+                                </div>            
+                            </div> 
+                            <div class="item">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="top col-md-6 col-xs-12"><img src="images/engineering.jpg" class="img-responsive"></div>
+                                        <div class="content col-md-6 col-xs-12">
+                                            <h2>Robotics Mentorship</h2>
+                                            <p><i class="fa fa-check-circle"></i> <a href="http://first.global/about/about-first-global/">FIRST Global</a> initiative to teach young people how to program robotics: using Block programming and Java</p>
+                                            <p><i class="fa fa-check-circle"></i> <a href="http://www.appinventor.org/">MIT AppInventor</a> mobile application trainings for youth (10-18 years old), especially young women. This starts with <b>Ideation</b> and ends by <b>Delivery</b> of the Mobile App fully working.</p>
+                                        </div>
+                                    </div>
+                                </div>           
+                            </div>
+                            <div class="item">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="top col-md-6 col-xs-12"><img src="images/family.jpg" class="img-responsive"></div>
+                                        <div class="content col-md-6 col-xs-12">
+                                            <h2>IT Professional Trainings</h2>
+                                            <p><i class="fa fa-check-circle"></i> Java Programming to newbies, also to the experienced programmers</p>
+                                            <p><i class="fa fa-check-circle"></i> <a href="https://community.rapidpro.io/">RapidPro</a> to build a mobile service through an easy-to-use interface. Talk to your users in any language using via SMS, voice, social media, and more...</p>
+                                            <p><i class="fa fa-check-circle"></i> <a href="http://openmrs.org/">OpenMRS</a> to improve health care delivery in resource-constrained environments (see <a href="http://openmrs.org/demo/">Demo</a>)</p>
+                                            <p><i class="fa fa-check-circle"></i> <a href="https://www.atlassian.com/">Atlassian</a> to help organize your work easily and enhance/improve your teams work</p>
+                                        </div>
+                                    </div>
+                                </div>            
+                            </div> 
+                            <!-- div class="item">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="top col-md-6 col-xs-12"><img src="images/meeting-room.jpg" class="img-responsive"></div>
+                                        <div class="content col-md-6 col-xs-12">
+                                            <h2>Various Businesses</h2>
+                                            <p>Taxi projects as well as Car Renting services...</p>
+                                            <p>Helping young professional to settle...</p>
+                                            <p>Taxi projects as well as Car Renting services...</p>
+                                            <p>Helping young professional to settle...</p>
+                                        </div>
+                                    </div>
+                                </div>            
+                            </div -->
+
+                        <!-- End Item -->
+                        </div>
+                        
+                        
+                        <!-- End Carousel Inner -->
+                        <div class="controls draggable ui-widget-content col-md-6 col-xs-12">
+                            <ul class="nav ui-widget-header">
+
+                                <li data-target="#custom_carousel" data-slide-to="0" class="active"><a href="#"><img src="images/computer-programming.jpg"><small>Programming</small></a></li>
+                                <li data-target="#custom_carousel" data-slide-to="1"><a href="#"><img src="images/lending.jpg"><small>Investment</small></a></li>
+                                <li data-target="#custom_carousel" data-slide-to="2"><a href="#"><img src="images/manette.jpg"><small>Robotics</small></a></li>
+                                <li data-target="#custom_carousel" data-slide-to="3"><a href="#"><img src="images/chatting-team.jpg"><small>Trainings</small></a></li>
+                                <!-- li data-target="#custom_carousel" data-slide-to="4"><a href="#"><img src="images/blueprint.jpg"><small>Others</small></a></li -->
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Carousel -->
+                </div>
+
+                <!-- We will use PrefixFree - a script that takes care of CSS3 vendor prefixes
+                You can download it from https://leaverou.github.com/prefixfree/ -->
+                <script src="http://thecodeplayer.com/uploads/js/prefixfree.js" type="text/javascript"></script>
+
+            </div>
+
+            <!-- SECTION 3 (Portfolio) -->
+
+            <div class="section section-features" style="padding:30px 0" id="section3">
+                   
+                <h3 style="color: #4fb032;" class="header-text text-center"><b>Portfolio</b></h3>
+                <div class="row">
+                    
+                    <div class="col-md-4">
+                        <div class="card card-blue">
+                            <div class="icon">
+                                <i class="fa fa-desktop" style="color: #f0e61e;font-size: 90px;"></i>
+                            </div>
+                            <h4>Software Development</h4>
+                            <p>The most important systems are:</p>
+                            <ul>
+                                <li>Loans and Grants Management System: <em>REG-EDCL (Rwanda)</em></li>
+                                <li>Health Care Billing Management System: <em>Ministry of Health (Rwanda)</em></li>
+                                <li>Stock Management System: <em>Ministry of Health (Rwanda)</em></li>
+                                <li>HR - Deployments Management System: <em>Ministry of Health (Rwanda)</em></li>
+                                <li>Keep Clean Mobile App: <em>Ministry of Local Government (Rwanda)</em></li>
+                                <li>Car-Wash Bills Management Mobile App: <em>Prestige Lavage (Côte d'Ivoire)</em></li>
+                                <li>Pharmacy Management System: <em>Ministry of Health (Côte d'Ivoire)</em></li>
+                                <li>Health Care Patient ID Generator System: <em>Ministry of Health (Côte d'Ivoire)</em></li>
+                                <li>Payroll Management Database: <em>AGESPRO (Rwanda)</em></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-blue">
+                            <div class="icon">
+                                <i class="fa fa-exchange" style="color: #f0e61e;font-size: 90px;"></i>
+                            </div>
+                            <h4>Mentorship</h4>
+                            <p>Helped with different Youth IT initiatives.</p>
+                            <div style="text-align: center;">
+                                <p><a href="http://technovationchallenge.org/about/"><strong>Technovation Challenge</strong></a></p>
+                                <table>
+                                    <tr>
+                                        <td><i class="fa fa-lightbulb-o" style="font-size: 20px;"></i></td>
+                                        <td style="padding-left: 5px;">
+                                            <span>
+                                                <strong>Ideation: </strong>
+                                                Identify a problem in the community
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fa fa-mobile" style="font-size: 20px;"></i></td>
+                                        <td style="padding-left: 5px;">
+                                            <span>
+                                                <strong>Technology: </strong>
+                                                Develop a mobile app solution
+                                            </span><br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fa fa-file-text"></i></td>
+                                        <td style="padding-left: 5px;">           
+                                            <span>                                
+                                                <strong>Entrepreneurship: </strong>
+                                                Build a business plan
+                                            </span><br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fa fa-microphone"></i></td>
+                                        <td style="padding-left: 5px;">           
+                                            <span>
+                                                <strong>Pitch: </strong>
+                                                Bring the business to market                               
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><em>[Rwanda Team - 2016/2017]</em></td>
+                                    </tr>
+                                </table>
+                               
+                                <p><a href="http://first.global/about/about-first-global/"><strong>FIRST Global</strong></a></p>
+                                <table>                                    
+                                    <tr>
+                                        <td><i class="fa fa-android" style="font-size: 20px;"></i></td>
+                                        <td style="padding-left: 5px;">
+                                            <span>Initiative to teach young people how to program robotics: using Block programming and/or Java</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><em>[Côte d'Ivoire Team - 2017]</em></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-blue">
+                            <div class="icon">
+                                <i class="fa fa-users" style="color: #f0e61e;font-size:90px;"></i>
+                            </div>
+                            <div class="text">
+                                <h4>Professional Trainings</h4>
+                                <p>All trainings are done on site or indoor depending on the customers wishes and needs</p>
+                                <span>1. Java Programming training <em>for SIGDEP-2 team (Côte d'Ivoire)</em></span><br>
+                                <span>2. OpenMRS Customization and Implementation training of trainers <em>for SIGDEP-2 team (Côte d'Ivoire)</em></span>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- SECTION 4 (Contact Us) -->
+
+            <div class="section section-no-padding" id="section4">
+                <div class="parallax filter-gradient blue" data-color="blue">
+                    <div class="info">
+                     <div class="row">
+                         <div class="col-md-6">
+                            <img src="images/logos/auto-hubUtech-logo-v2.png" alt="Auto-HubUTech" style="width:100%;height:400%; margin-left:60%;">
+                         </div>
+                     </div>
+                     <br/>
+                       <div class="row">
+                           <div class="col-md-6">
+                              
+                               <i class="fa fa-envelope" aria-hidden="true" style="color:black; font-size:40px;"></i><span style="color:#f0e61e;"><br>info@auto-hubutech.com</span>
+                           </div>
+                           <div class="col-md-6">
+                           
+                               <i class="fa fa-facebook-square" style="color:black; font-size:40px;"></i><span style="color:#f0e61e;"><br>www.auto-hubutech.com</span>
+                           </div>
+                            
+                       </div>
+                       <br>
+
+                       <div class="row">
+                           <div class="col-md-6">
+
+                               <i class="fa fa-whatsapp" style="color:black; font-size:40px;"></i><span style="color:#f0e61e;"><br>+250 788 779 595</span>
+                           </div>
+                           <div class="col-md-6">
+                           
+                               <i class="fa fa-github" style="color:black; font-size:40px;"></i><span><br><a style="color: #f0e61e;" href="https://github.com/Auto-HubUTech">Auto-HubUTech</a></span>
+                           </div>
+                            
+                       </div>
+                       <br>
+
+                       <div class="row">
+                           <div class="col-md-6">
+                              
+                               <i class="fa fa-mobile" aria-hidden="true" style="color:black; font-size:40px;"></i><span style="color:#f0e61e;"><br>+225 75 11 06 95</span>
+                           </div>
+                           <div class="col-md-6">
+                           
+                               <i class="fa fa-phone" style="color:black; font-size:40px;"></i><span style="color:#f0e61e;"><br>+225 57 55 66 95</span>
+                           </div>
+                            
+                       </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer">
+                <div class="container">
+                    <div class="social-area pull-right">
+                        <a class="btn btn-social btn-facebook btn-simple">
+                        <i class="fa fa-facebook-square"></i>
+                        </a>
+                        <a class="btn btn-social btn-twitter btn-simple">
+                        <i class="fa fa-twitter"></i>
+                        </a>
+                        <a class="btn btn-social btn-pinterest btn-simple">
+                        <i class="fa fa-pinterest"></i>
+                        </a>
+                    </div>
+                    <div class="copyright">
+                        &copy; 2017 Auto-HubUTech.
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+    </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://arrow.scrolltotop.com/arrow79.js"></script>
+    <noscript>Not seeing a <a href="http://www.scrolltotop.com/">Scroll to Top Button</a>? Go to our FAQ page for more info.</noscript>
+
+    <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="assets/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+    <script src="assets/js/bootstrap.js" type="text/javascript"></script>
+    <script src="assets/js/awesome-landing-page.js" type="text/javascript"></script>
+</html>
