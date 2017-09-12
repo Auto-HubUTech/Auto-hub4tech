@@ -1,0 +1,38 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+td {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+td.off {
+background: #445F78;
+}
+td.on {
+background: #6C90AB;
+}
+td.sideOff {
+background:#A2A9AF;
+}
+td.sideOn {
+background: #6F7C87;
+}
+
+
+td.off2 {
+background: #8FBFBF;
+}
+td.on2 {
+background: #629696;
+}
+td.sideOff2 {
+background: #8FBFBF;
+}
+td.sideOn2 {
+background: #629696;
+}
