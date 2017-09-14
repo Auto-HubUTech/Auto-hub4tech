@@ -839,7 +839,7 @@ a:focus, a:active {
     overflow: hidden;
     border-radius: 50%;
     border: 1px solid #333333;
-    width: 50px; 
+    width: 100%; 
     float: left;
 }
 
@@ -849,15 +849,17 @@ a:focus, a:active {
     line-height: 20px;
     float: left;
     margin-left: 10px;
-    margin-top: 5px;
-    width: 50px;
-    height: 50px;
+    margin-top: 0px;
+    width: 100px;
+    height: 100px;
 }
 .logo-container{
-    margin-top: 10px;
+    margin-top: 0px;
 }
 .logo-container .logo img{
-    width: 100%;
+    width: 200%;
+    padding-bottom: 60px
+  
 }
 
 .landing-page1 .container{
@@ -1071,9 +1073,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de8e0009', e
   }
 
 
-
   .landing-page .logos {
-    width: 100%;
+    width: 50%;
     margin: 0 auto;
     text-align: center;
   }
